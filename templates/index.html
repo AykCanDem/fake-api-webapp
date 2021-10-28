@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Fake-API Home Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+
+<body>
+<p>Table of Football Players</p>
+
+
+<div style="width:20%">
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+            <tr>
+                <th scope="col">#id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            <tr>
+                {% for item in data %}
+            <tr>
+                <th scope="row">{{item.player_id}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+
+            </tr>
+
+            {% endfor %}
+
+
+        </tbody>
+
+
+    </table>
+</div>
+   
+
+      <form action = "http://localhost:5000/players" method = "post">
+         <p>Enter Name:</p>
+         <p><input type = "text" name = "name" value="example" /></p>
+         <p>Enter Age:</p>
+         <p><input type = "text" name = "age" value="ex_age" /></p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form>   
+
+
+</body>
+
+</html>
