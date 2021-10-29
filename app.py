@@ -10,8 +10,6 @@ app = Flask(__name__)
 api = Api(app)
 
 def read_data():
-
-
     with open("data.json", "r") as d:
         data = json.load(d)
 
@@ -19,9 +17,15 @@ def read_data():
 
 data = read_data()
 
+admin_mode = 0
+
+
+
+
+
 @app.route("/")
 def home():
-    return render_template("/index.html", data=data["players"])
+    return render_template("/index.html", data=data["players"], admin_mode=admin_mode)
 
 
 
@@ -35,6 +39,17 @@ def reset():
     return redirect("/")
     #return render_template("/index.html", data=data["players"])
 
+
+@app.route("/switch_mode", methods = ["POST"])
+def switch_mode():
+    global admin_mode
+    if admin_mode == 1:
+        admin_mode = 0
+    else:
+        admin_mode = 1
+
+    return redirect("/")
+    #return render_template("/index.html", data=data["players"])
 
 
 class Players(Resource):

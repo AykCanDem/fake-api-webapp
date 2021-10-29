@@ -1,0 +1,14 @@
+{
+	"players": [
+		{
+			"player_id": 1,
+			"name": "Alex",
+			"age": "45"
+		},
+		{
+			"player_id": 2,
+			"name": "Ronaldinho",
+			"age": "40"
+		}
+	]
+}
