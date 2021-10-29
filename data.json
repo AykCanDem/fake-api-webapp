@@ -1,14 +1,1 @@
-{
-	"players":[
-		{
-			"player_id" : 1,
-			"name" : "Alex",
-			"age"	: "45"
-		},
-		{
-			"player_id" : 2,
-			"name" : "Ronaldinho",
-			"age"	: "40"
-		}
-	]
-}
+{"players": [{"player_id": 1, "name": "Alex", "age": "45"}, {"player_id": 2, "name": "Ronaldinho", "age": "40"}, {"name": "aykut.caner.demir@gmail.com", "age": "asdasd", "player_id": 3}]}
