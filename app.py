@@ -67,7 +67,7 @@ class Players(Resource):
     #return all players in the list
     def get(self):
         players_list = read_data()
-        return players_list
+        return players_list["players"]
 
     def post(self):
 
@@ -124,7 +124,7 @@ class Player(Resource):
             #update json file
             with open("data.json", "w") as file:
                 json.dump(data, file)
-                return 200, OK
+                return 200, "OK"
 
 
     def delete(self, player_id):

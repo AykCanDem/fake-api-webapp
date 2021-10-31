@@ -17,6 +17,9 @@
     <div class="container">
         <h1>Fake-API Web APP</h1>
         <p>You can call different cURL requests and observe the changes in the below table</p>
+        <p>This page is designed to be supportive source for the article: ........</p>
+        <br>
+        <br>
         <div style="width:40%">
             <table class="table table-striped table-hover table-sm">
                 <thead>
@@ -38,42 +41,62 @@
                 </tbody>
             </table>
         </div>
-
+        <br>
+        <br>
         <div class="container bcontent">
-
-            <p><code>GET</code> request: request data from a specified resource</p>
+            <!-- GET Request -->
+            <p><b><code>GET</code> request: retrieve data from a specified resource</b></p>
+            <p>Retrieve all the players in the table as json format.</p>
             <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
-                <pre>curl -X GET -H "Content-Type: application/json" https://fake-api-webapp.herokuapp.com/players/1</pre>
+                <pre>curl -X GET https://fake-api-webapp.herokuapp.com/players</pre>
+            </div>
+            <br>
+            <p>Return only response headers with <code>-I</code> option  </p>
+            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
+                <pre>curl -X GET -I https://fake-api-webapp.herokuapp.com</pre>
+            </div>
+            <br>
+            <p>Retrieve details of a specific player in the table</p>
+            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
+                <pre>curl -X GET https://fake-api-webapp.herokuapp.com/players/1</pre>
             </div>
 
+            <!-- POST Request -->
             <hr>
 
-            <p><code>GET</code> request: only returns response headers thanks to <code>-I</code> option</p>
-            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
-                <pre>curl -X GET -I -H "Content-Type: application/json" https://fake-api-webapp.herokuapp.com</pre>
-            </div>
-
-            <hr>
-
-            <p><code>POST</code> request: performs resource-specific processing on the payload</p>
+            <p><b><code>POST</code> request: performs resource-specific processing on the payload</b></p>
+            <p>Create a new player</p>
             <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey; border-radius: 5px">
-                <pre>curl -X POST -H "Content-Type: application/json" https://fake-api-webapp.herokuapp.com/players \
--d '{"name" : "New_Player_Name","team": "New_Player_Team"}'</pre>
+                <pre>curl -X POST https://fake-api-webapp.herokuapp.com/players \
+                    -H "Content-Type: application/json" \
+                    -d '{"name" : "Ibrahimovic","team": "AC Milan"}'</pre>
+            </div>
+            <br>
+            <p>Reset player's table</p>
+            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey; border-radius: 5px">
+                <pre>curl -X POST https://fake-api-webapp.herokuapp.com/reset</pre>
             </div>
 
+
+            <!-- PUT request-->
             <hr>
 
-            <p><code>PUT</code> request: replace the target resource with the request payload</p>
+            <p><b><code>PUT</code> request: replace the target resource with the request payload</b></p>
+            <p>Update the existing player's information</p>
             <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
-                <pre>curl -X PUT -H "Content-Type: application/json" https://fake-api-webapp.herokuapp.com/players/1 \
--d '{"player_id": 1, "name" : "Alex","team": "50"}'</pre>
+                <pre>curl -X PUT https://fake-api-webapp.herokuapp.com/players/3 \
+                    -H "Content-Type: application/json" \
+                    -d '{"player_id": 3, "name" : "Lionel Messi","team": "PSG"}'</pre>
             </div>
 
+
+            <!-- DELETE request-->
             <hr>
 
-            <p><code>DELETE</code> request: deletes the specified resources</p>
+            <p><b><code>DELETE</code> request: deletes the specified resources</b></p>
+            <p>Delete a player from the list</p>
             <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
-                <pre>curl -X DELETE -H "Content-Type: application/json" https://fake-api-webapp.herokuapp.com/players/1</pre>
+                <pre>curl -X DELETE https://fake-api-webapp.herokuapp.com/players/1</pre>
             </div>
     
         </div>
