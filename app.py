@@ -25,7 +25,7 @@ admin_mode = 0
 
 @app.route("/")
 def home():
-    return render_template("/index.html", data=data["players"], admin_mode=admin_mode)
+    return render_template("/index.html", data=read_data()["players"], admin_mode=admin_mode)
 
 
 
