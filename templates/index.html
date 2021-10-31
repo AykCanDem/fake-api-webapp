@@ -5,6 +5,7 @@
     <title>Fake-API Home Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='style.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -47,17 +48,17 @@
             <!-- GET Request -->
             <p><b><code>GET</code> request: retrieve data from a specified resource</b></p>
             <p>Retrieve all the players in the table as json format.</p>
-            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
+            <div class="code_block">
                 <pre>curl -X GET https://fake-api-webapp.herokuapp.com/players</pre>
             </div>
             <br>
             <p>Return only response headers with <code>-I</code> option  </p>
-            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
+            <div class="code_block">
                 <pre>curl -X GET -I https://fake-api-webapp.herokuapp.com</pre>
             </div>
             <br>
             <p>Retrieve details of a specific player in the table</p>
-            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
+            <div class="code_block">
                 <pre>curl -X GET https://fake-api-webapp.herokuapp.com/players/1</pre>
             </div>
 
@@ -66,14 +67,14 @@
 
             <p><b><code>POST</code> request: performs resource-specific processing on the payload</b></p>
             <p>Create a new player</p>
-            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey; border-radius: 5px">
+            <div class="code_block">
                 <pre>curl -X POST https://fake-api-webapp.herokuapp.com/players \
                     -H "Content-Type: application/json" \
                     -d '{"name" : "Ibrahimovic","team": "AC Milan"}'</pre>
             </div>
             <br>
             <p>Reset player's table</p>
-            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey; border-radius: 5px">
+            <div class="code_block">
                 <pre>curl -X POST https://fake-api-webapp.herokuapp.com/reset</pre>
             </div>
 
@@ -83,7 +84,7 @@
 
             <p><b><code>PUT</code> request: replace the target resource with the request payload</b></p>
             <p>Update the existing player's information</p>
-            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
+            <div class="code_block">
                 <pre>curl -X PUT https://fake-api-webapp.herokuapp.com/players/3 \
                     -H "Content-Type: application/json" \
                     -d '{"player_id": 3, "name" : "Lionel Messi","team": "PSG"}'</pre>
@@ -95,7 +96,7 @@
 
             <p><b><code>DELETE</code> request: deletes the specified resources</b></p>
             <p>Delete a player from the list</p>
-            <div style="background-color:whitesmoke; border-style: solid; border-color: lightgrey">
+            <div class="code_block">
                 <pre>curl -X DELETE https://fake-api-webapp.herokuapp.com/players/1</pre>
             </div>
     

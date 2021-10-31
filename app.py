@@ -9,55 +9,57 @@ import json
 app = Flask(__name__)
 api = Api(app)
 
-def read_data():
-    with open("data.json", "r") as d:
-        data = json.load(d)
 
-    return data
 
-data = read_data()
+# data.json holds up to date data
+# init_data.json holds the initial table (does not change)
 
+#default admin mode
 admin_mode = 0
 
 
+def read_data():
+    with open("data.json", "r") as d:
+        data = json.load(d)
+    return data
 
 
+def update_file(data, file):
 
+    with open(file, "w") as file:
+        json.dump(data, file, indent=True)
+
+
+# render index.html with parameters data and admin_mode
 @app.route("/")
 def home():
     return render_template("/index.html", data=read_data()["players"], admin_mode=admin_mode)
 
 
-
+# read the init_data.json file and update data.json file with its content
 @app.route("/reset", methods = ["POST"])
 def reset():
     if request.method == "POST":
         with open("init_data.json", "r") as d:
-            global data 
             data = json.load(d)
-
-        with open("data.json", "w") as file:
-            json.dump(data, file, indent=True)
+        update_file(data, "data.json")
 
     return redirect("/")
-    #return render_template("/index.html", data=data["players"])
 
 
+#switch admin mode
 @app.route("/switch_mode", methods = ["POST"])
 def switch_mode():
     global admin_mode
-    if admin_mode == 1:
-        admin_mode = 0
-    else:
-        admin_mode = 1
+    admin_mode = not(admin_mode)
 
     return redirect("/")
-    #return render_template("/index.html", data=data["players"])
 
 
 class Players(Resource):
 
     def next_id(self):
+        data = read_data()
         maxid = 0
         for player in data["players"]:
             if player["player_id"] > maxid:
@@ -82,12 +84,12 @@ class Players(Resource):
         new_player = {"name" : name, "team" : team, "player_id" : id}
         print("POST: new_player:" , new_player)
 
+
+        data = read_data()
         #update players list
         data["players"].append(new_player)
 
-        #update json file
-        with open("data.json", "w") as file:
-            json.dump(data, file)
+        update_file(data, "data.json")
 
 
   
@@ -96,8 +98,7 @@ class Players(Resource):
 class Player(Resource):
     
     def get(self, player_id):
-        print(data)
-        print(type(data))
+        data = read_data()
         for player in data["players"]:
             if player["player_id"] == player_id:
                 return player
@@ -113,29 +114,27 @@ class Player(Resource):
                 data["players"][i] = request_player
 
                 #update json file
-                with open("data.json", "w") as file:
-                    json.dump(data, file, indent=True)
-                return 200, "OK"
+                update_file(data, "data.json")
+                return redirect("/")
         else:
             #create new player
             #update players list
             data["players"].append(request_player)
 
             #update json file
-            with open("data.json", "w") as file:
-                json.dump(data, file, indent=True)
-                return 200, "OK"
+            update_file(data, "data.json")
+
+        return redirect("/")
 
 
     def delete(self, player_id):
-
+        data = read_data()
         for i,player in enumerate(data["players"]):
             if player["player_id"] == player_id:
                 del data["players"][i]
 
                 #update json file
-                with open("data.json", "w") as file:
-                    json.dump(data, file, indent=True)
+                update_file(data, "data.json")
                 return "deleted"
         else:
             return 204
