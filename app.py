@@ -36,6 +36,9 @@ def reset():
             global data 
             data = json.load(d)
 
+        with open("data.json", "w") as file:
+            json.dump(data, file)
+
     return redirect("/")
     #return render_template("/index.html", data=data["players"])
 
@@ -61,6 +64,10 @@ class Players(Resource):
                 maxid = player["player_id"]
         return maxid+1
 
+    #return all players in the list
+    def get(self):
+        players_list = read_data()
+        return players_list
 
     def post(self):
 
@@ -69,10 +76,10 @@ class Players(Resource):
         req = request.json if request.json != None else request.form
 
         name = req["name"]
-        age = req["age"]
+        team = req["team"]
         id = self.next_id()
 
-        new_player = {"name" : name, "age" : age, "player_id" : id}
+        new_player = {"name" : name, "team" : team, "player_id" : id}
         print("POST: new_player:" , new_player)
 
         #update players list
@@ -98,7 +105,7 @@ class Player(Resource):
     def put(self, player_id):
         req = request.json
 
-        request_player = {"player_id":player_id, "name":req["name"], "age":req["age"]}
+        request_player = {"player_id":player_id, "name":req["name"], "team":req["team"]}
 
         #update existing player
         for i,player in enumerate(data["players"]):
@@ -131,7 +138,7 @@ class Player(Resource):
                     json.dump(data, file)
                 return "deleted"
         else:
-            return 204, "No Content"
+            return 204
 
 api.add_resource(Player, "/players/<int:player_id>")
 api.add_resource(Players, "/players")
