@@ -37,7 +37,7 @@ def reset():
             data = json.load(d)
 
         with open("data.json", "w") as file:
-            json.dump(data, file)
+            json.dump(data, file, indent=True)
 
     return redirect("/")
     #return render_template("/index.html", data=data["players"])

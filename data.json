@@ -1,1 +1,19 @@
-{"players": [{"player_id": 1, "name": "Alex de Souza", "team": "Fenerbahce"}, {"player_id": 2, "name": "Cristiano Ronaldo", "team": "Manchester United"}, {"player_id": 3, "name": "Lionel Messi", "team": "PSG"}, {"name": "111", "team": "111", "player_id": 4}]}
+{
+ "players": [
+  {
+   "player_id": 1,
+   "name": "Alex de Souza",
+   "team": "Fenerbahce"
+  },
+  {
+   "player_id": 2,
+   "name": "Cristiano Ronaldo",
+   "team": "Manchester United"
+  },
+  {
+   "player_id": 3,
+   "name": "Lionel Messi",
+   "team": "PSG"
+  }
+ ]
+}
