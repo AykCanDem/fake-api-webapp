@@ -106,7 +106,7 @@ class Player(Resource):
         req = request.json
 
         request_player = {"player_id":player_id, "name":req["name"], "team":req["team"]}
-
+        data = read_data()
         #update existing player
         for i,player in enumerate(data["players"]):
             if player["player_id"] == request_player["player_id"]:
@@ -114,7 +114,7 @@ class Player(Resource):
 
                 #update json file
                 with open("data.json", "w") as file:
-                    json.dump(data, file)
+                    json.dump(data, file, indent=True)
                 return 200, "OK"
         else:
             #create new player
@@ -123,7 +123,7 @@ class Player(Resource):
 
             #update json file
             with open("data.json", "w") as file:
-                json.dump(data, file)
+                json.dump(data, file, indent=True)
                 return 200, "OK"
 
 
@@ -135,7 +135,7 @@ class Player(Resource):
 
                 #update json file
                 with open("data.json", "w") as file:
-                    json.dump(data, file)
+                    json.dump(data, file, indent=True)
                 return "deleted"
         else:
             return 204
