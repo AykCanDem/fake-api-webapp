@@ -5,6 +5,7 @@ cURL: Hands-on Interacting with APIs
 
 Website: http://fake-api-webapp.herokuapp.com/
 
+Blog:    <a href="https://medium.com/@aykut.caner.demir/curl-hands-on-interacting-with-apis-f1fae45abaf7">cURL: Hands-on Interacting with APIs</a>
 
 <b>GET request: retrieve data from a specified resource</b>
 
